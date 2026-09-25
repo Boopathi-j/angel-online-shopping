@@ -11,7 +11,7 @@ MAIN JAVASCRIPT
 ====================================================== */
 
 const GOOGLE_SHEET_URL =
-    "https://script.google.com/macros/s/AKfycbwW-EKL7YaqI8jXftByIq4owgUHZy8eZH05g5G5xnrUN8iIc1pQxjWlk9QZB8-K56LfPg/exec";
+    "https://script.google.com/macros/s/AKfycbzZlQycRHW87PDkn7rA9l6TrIwTV12GsEJT76M1bylM5dH927By0e51i30ZfyF45YOPyQ/exec";
 
 
 /* ======================================================
