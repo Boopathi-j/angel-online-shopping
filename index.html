@@ -1,0 +1,430 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="script.js">
+<link rel="stylesheet" href="style.css">
+
+<title>Angel Online Shopping</title>
+
+
+</head>
+
+<body>
+
+<header>
+    <div class="navbar">
+
+        <div class="logo">
+            ANGEL
+        </div>
+
+        <div class="search">
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="Search for products..."
+                oninput="searchProducts()"
+            >
+        </div>
+
+        <div class="nav-actions">
+
+            <button class="nav-btn" onclick="openLogin()">
+                👤 Login
+            </button>
+
+            <button class="nav-btn" onclick="openCart()">
+                🛍️ Bag
+                <span class="cart-count" id="cartCount">0</span>
+            </button>
+
+        </div>
+
+    </div>
+</header>
+
+<section class="hero">
+
+    <div class="hero-content">
+
+        <h1>
+            Style That<br>
+            <span>Feels Like You</span>
+        </h1>
+
+        <p>
+            Discover fashion, accessories and lifestyle products
+            at Angel Online Shopping.
+        </p>
+
+        <button class="shop-btn"
+                onclick="document.getElementById('products').scrollIntoView({behavior:'smooth'})">
+            SHOP NOW
+        </button>
+
+    </div>
+
+    <div class="hero-art">
+        👗
+    </div>
+
+</section>
+
+<section class="categories">
+
+    <h2>Shop By Category</h2>
+
+    <div class="category-list">
+
+        <div class="category active"
+             onclick="filterCategory('All',this)">
+            All
+        </div>
+
+        <div class="category"
+             onclick="filterCategory('Women',this)">
+            Women
+        </div>
+
+        <div class="category"
+             onclick="filterCategory('Men',this)">
+            Men
+        </div>
+
+        <div class="category"
+             onclick="filterCategory('Accessories',this)">
+            Accessories
+        </div>
+
+        <div class="category"
+             onclick="filterCategory('Shoes',this)">
+            Shoes
+        </div>
+
+    </div>
+
+</section>
+
+<section class="products-section" id="products">
+    <script type="module" src="script.js"></script>
+
+    <h2>Trending Products</h2>
+
+    <div class="products" id="productContainer"></div>
+
+</section>
+
+
+<!-- CART -->
+
+<div class="cart-panel" id="cartPanel">
+
+    <div class="cart-header">
+
+        <h2>Your Bag</h2>
+
+        <button class="close"
+                onclick="closeCart()">
+            ×
+        </button>
+
+    </div>
+
+    <div class="cart-items"
+         id="cartItems">
+    </div>
+
+    <div class="cart-footer">
+
+        <div class="total">
+
+            <span>Total</span>
+
+            <span id="cartTotal">
+                ₹0
+            </span>
+
+        </div>
+
+        <button class="submit"
+                onclick="checkout()">
+            PLACE ORDER
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- LOGIN MODAL -->
+
+<div class="modal"
+     id="loginModal">
+
+    <div class="modal-box">
+
+        <h2>Login to Angel</h2>
+
+        <div class="login-info">
+            Login with your Google account to place orders.
+        </div>
+
+        <button class="google-btn"
+                onclick="googleLogin()">
+
+            🔵 Continue with Google
+
+        </button>
+
+        <button class="submit"
+                onclick="closeLogin()">
+
+            Close
+
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- ORDER MODAL -->
+
+<div class="modal"
+     id="orderModal">
+
+    <div class="modal-box">
+
+        <h2>Delivery Details</h2>
+
+        <div class="login-info"
+             id="loggedUser">
+        </div>
+
+        <form id="orderForm"
+              onsubmit="submitOrder(event)">
+
+            <div class="form-group">
+
+                <label>Customer Name</label>
+
+                <input
+                    type="text"
+                    id="customerName"
+                    required
+                >
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Phone Number</label>
+
+                <input
+                    type="tel"
+                    id="phone"
+                    required
+                >
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Delivery Address</label>
+
+                <textarea
+                    id="address"
+                    required
+                ></textarea>
+
+            </div>
+
+            <div class="form-group">
+
+                <label>City</label>
+
+                <input
+                    type="text"
+                    id="city"
+                    required
+                >
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Pincode</label>
+
+                <input
+                    type="text"
+                    id="pincode"
+                    required
+                >
+
+            </div>
+
+            <button class="submit"
+                    type="submit">
+
+                CONFIRM ORDER
+
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<footer>
+
+    <h3>Angel Online Shopping</h3>
+
+    <p>
+        Fashion • Lifestyle • Shopping
+    </p>
+
+    <br>
+
+    <p>
+        © 2026 Angel Online Shopping
+    </p>
+
+</footer>
+<script type="module" src="script.js"></script>
+<script type="module">
+
+  // ================================
+  // FIREBASE IMPORTS
+  // ================================
+
+  import { initializeApp } from
+    "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
+
+  import {
+    getAuth,
+    GoogleAuthProvider,
+    signInWithPopup,
+    onAuthStateChanged
+  } from
+    "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
+
+
+  // ================================
+  // FIREBASE CONFIGURATION
+  // ================================
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyAm4l0KUSFx0m82FIE4kN0ZU2aLzT6WXM",
+    authDomain: "angel-online-shopping-14455.firebaseapp.com",
+    projectId: "angel-online-shopping-14455",
+    storageBucket: "angel-online-shopping-14455.firebasestorage.app",
+    messagingSenderId: "307598572991",
+    appId: "1:307598572991:web:3945aa33fea628c441f50a",
+    measurementId: "G-KGM9JK8Y8P"
+  };
+
+
+  // ================================
+  // INITIALIZE FIREBASE
+  // ================================
+
+  const app = initializeApp(firebaseConfig);
+
+  const auth = getAuth(app);
+
+  const googleProvider = new GoogleAuthProvider();
+
+
+  // ================================
+  // CURRENT USER
+  // ================================
+
+  let currentUser = null;
+
+
+  // ================================
+  // GOOGLE LOGIN
+  // ================================
+
+  window.googleLogin = async function () {
+
+    try {
+
+      const result = await signInWithPopup(
+        auth,
+        googleProvider
+      );
+
+      currentUser = result.user;
+
+      console.log("Google login successful:", currentUser);
+
+      const loggedUser =
+        document.getElementById("loggedUser");
+
+      if (loggedUser) {
+        loggedUser.innerText =
+          "Logged in as " + currentUser.email;
+      }
+
+      const customerName =
+        document.getElementById("customerName");
+
+      if (customerName) {
+        customerName.value =
+          currentUser.displayName || "";
+      }
+
+      if (typeof closeLogin === "function") {
+        closeLogin();
+      }
+
+      alert(
+        "Welcome " +
+        (currentUser.displayName || "Customer")
+      );
+
+    } catch (error) {
+
+      console.error(
+        "Google login failed:",
+        error
+      );
+
+      alert(
+        "Google login failed: " +
+        error.message
+      );
+    }
+  };
+
+
+  // ================================
+  // AUTH STATE
+  // ================================
+
+  onAuthStateChanged(auth, (user) => {
+
+    currentUser = user;
+
+    if (user) {
+      console.log(
+        "User already logged in:",
+        user.email
+      );
+    } else {
+      console.log("No user logged in");
+    }
+
+  });
+
+</script>
+</body>
+
+
+<!-- https://script.google.com/macros/s/AKfycbwze69YQtNnqF2Q9d962h9RaMv_ch9eDtvkeOUtr6wF8N-dWJ_UxjWJHtkMBoROm9qa7w/exec -->
