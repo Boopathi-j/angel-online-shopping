@@ -37,7 +37,7 @@ import {
 const firebaseConfig = {
 
     apiKey:
-        "AIzaSyAm4l0KUSFx0m82FIE4kN8ZU2aLzT6WXM",
+        "AIzaSyAm4l0KUSFx0m82FIE4k8N0ZU2aLzT6WXM",
 
     authDomain:
         "angel-online-shopping-14455.firebaseapp.com",
