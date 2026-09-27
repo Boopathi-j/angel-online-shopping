@@ -208,7 +208,10 @@ header{
     font-size:100px;
     overflow:hidden;
 }
-
+.product-img img{
+    height:100%;
+    width:100%
+}
 .product:hover .product-img{
     transform:scale(1.02);
 }
@@ -306,6 +309,21 @@ header{
     justify-content:center;
     font-size:30px;
     border-radius:7px;
+}
+.cart-icon {
+    width: 80px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.cart-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
 }
 
 .cart-info{
