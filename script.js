@@ -185,7 +185,7 @@ const products = [
         name: "Floral Summer Dress",
         category: "Women",
         price: 899,
-        icon: "👗"
+        image : "https://i.pinimg.com/736x/49/03/82/4903825e2328d08f62c6fd85e53cae38.jpg"
     },
 
     {
@@ -193,7 +193,7 @@ const products = [
         name: "Classic Men's Shirt",
         category: "Men",
         price: 699,
-        icon: "👔"
+        image : "https://i.pinimg.com/1200x/0a/24/14/0a24146b723f0f5485c04f5859e9c3e9.jpg"
     },
 
     {
@@ -201,7 +201,7 @@ const products = [
         name: "Premium Sneakers",
         category: "Shoes",
         price: 1299,
-        icon: "👟"
+        image : "https://i.pinimg.com/1200x/06/af/68/06af68ba950f56342ce76c959b6b01e7.jpg"
     },
 
     {
@@ -209,7 +209,7 @@ const products = [
         name: "Fashion Handbag",
         category: "Accessories",
         price: 1099,
-        icon: "👜"
+        image : "https://i.pinimg.com/736x/f5/3d/e7/f53de7b616ea10ef0cece44d8326c2cc.jpg"
     },
 
     {
@@ -217,7 +217,7 @@ const products = [
         name: "Women's Kurti",
         category: "Women",
         price: 799,
-        icon: "🥻"
+        image : "https://i.pinimg.com/736x/4a/b9/2e/4ab92e8d40de504a9de416a384826e05.jpg"
     },
 
     {
@@ -225,7 +225,7 @@ const products = [
         name: "Men's Casual T-Shirt",
         category: "Men",
         price: 499,
-        icon: "👕"
+        image : "https://i.pinimg.com/1200x/c8/79/91/c879918b7d598700e1332456879fceb5.jpg"
     },
 
     {
@@ -233,7 +233,7 @@ const products = [
         name: "Designer Sunglasses",
         category: "Accessories",
         price: 599,
-        icon: "🕶️"
+        image : "https://i.pinimg.com/736x/f5/67/16/f56716fedabd977d3b81acdcb01bba96.jpg"
     },
 
     {
@@ -241,7 +241,7 @@ const products = [
         name: "Running Shoes",
         category: "Shoes",
         price: 1499,
-        icon: "👟"
+        image : "https://i.pinimg.com/1200x/d4/72/98/d4729805a3d411c049e561bd9972a47c.jpg"
     },
 
     {
@@ -249,7 +249,7 @@ const products = [
         name: "Party Wear Dress",
         category: "Women",
         price: 1599,
-        icon: "👗"
+        image : "https://i.pinimg.com/1200x/bc/ef/a9/bcefa98ada51c2d7f3d172e0760dc10d.jpg"
     },
 
     {
@@ -257,7 +257,7 @@ const products = [
         name: "Men's Denim Jacket",
         category: "Men",
         price: 1399,
-        icon: "🧥"
+        image : "https://i.pinimg.com/736x/51/4c/93/514c93f848ed1f587f592689dd6a0377.jpg"
     },
 
     {
@@ -265,7 +265,7 @@ const products = [
         name: "Fashion Watch",
         category: "Accessories",
         price: 999,
-        icon: "⌚"
+        image : "https://i.pinimg.com/736x/47/59/b7/4759b70586008eef2a822783e3c8d29b.jpg"
     },
 
     {
@@ -273,7 +273,29 @@ const products = [
         name: "Casual Sneakers",
         category: "Shoes",
         price: 1199,
-        icon: "👟"
+        image : "https://i.pinimg.com/1200x/60/5d/6b/605d6b90c9d520bb851c956cca4dc8a2.jpg"
+    },
+     {
+        id: 13,
+        name: "Headphones",
+        category: "Accessories",
+        price: 599,
+        image : "https://i.pinimg.com/736x/80/09/b6/8009b6734b9843d65f6be043ebbd63dd.jpg"
+    },
+
+     {
+        id: 14,
+        name: "Bracelet",
+        category: "Accessories",
+        price: 299,
+        image : "https://i.pinimg.com/1200x/4b/0a/b7/4b0ab77746c3af18b467a2970557515f.jpg"
+    },
+     {
+        id: 15,
+        name: "Mens bag",
+        category: "Accessories",
+        price: 699,
+        image : "https://i.pinimg.com/736x/f2/df/50/f2df502769e3d7bedf77f7e3c11ecf3b.jpg"
     }
 
 ];
@@ -366,7 +388,7 @@ function displayProducts() {
             card.innerHTML = `
 
                 <div class="product-img">
-                    ${product.icon}
+                    <img src="${product.image}" alt="${product.name}">
                 </div>
 
                 <div class="product-info">
@@ -630,7 +652,7 @@ function updateCart() {
             div.innerHTML = `
 
                 <div class="cart-icon">
-                    ${item.icon}
+                     <img src="${item.image}" alt="${item.name}">
                 </div>
 
                 <div class="cart-info">
